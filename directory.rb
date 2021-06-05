@@ -18,14 +18,19 @@ end
 def choice(selection)
   case selection
   when "1"
+    puts "You selected 'input the students'"
     input_students
   when "2"
+    puts "You selected 'show the students'"
     show_students
   when "9"
+    puts "You selected 'input the students'"
     exit # this will cause the program to terminate
   when "3"
+    puts "You selected 'save the list of students'"
     save_students
   when "4"
+    puts "You selected 'load the list of students'"
     load_students
   else
     puts "I don't know what you meant, try again"
