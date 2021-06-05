@@ -24,14 +24,19 @@ def choice(selection)
     puts "You selected 'show the students'"
     show_students
   when "9"
-    puts "You selected 'input the students'"
+    puts "You selected exit"
     exit # this will cause the program to terminate
   when "3"
     puts "You selected 'save the list of students'"
-    save_students
+    # Ask what file the user would like to save to
+    puts "What file would you like to save to?"
+    filename = gets.chomp
+    save_students(filename)
   when "4"
     puts "You selected 'load the list of students'"
-    load_students
+    puts "What file would you like to load?"
+    filename = gets.chomp
+    load_students(filename)
   else
     puts "I don't know what you meant, try again"
   end
@@ -77,9 +82,9 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
-def save_students
+def save_students(filename)
   # open the file for writing
-  file = File.open("students.csv", "w")
+  file = File.open(filename = "students.csv", "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -89,7 +94,7 @@ def save_students
   file.close
 end
 
-def load_students(filename = "students.csv")
+def load_students(filename)
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
